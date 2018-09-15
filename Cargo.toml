@@ -1,0 +1,6 @@
+[package]
+name = "rust-text-canvas"
+version = "0.1.0"
+authors = ["Michael Claybaugh <michael.claybaugh@gmail.com>"]
+
+[dependencies]
