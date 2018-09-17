@@ -43,7 +43,7 @@ pub fn make_map (rows: usize, cols: usize, bg_text: char)
         for _col in 0..cols {
             map[row].push(TextPixel {
                 text: bg_text,
-                text_color: Color::Red,
+                text_color: Color::Normal,
                 bg_color: Color::Normal
             });
         }
