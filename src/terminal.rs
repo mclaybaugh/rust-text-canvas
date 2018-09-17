@@ -4,6 +4,8 @@
  *
 */
 
+use canvas;
+
 /* Reset code */
 pub const RESET: &str = "\x1B[0m";
 /* Basic colors */
@@ -42,3 +44,13 @@ pub const BG_BRIGHT_BLUE: &str = "\x1B[44;1m";
 pub const BG_BRIGHT_MAGENTA: &str = "\x1B[45;1m";
 pub const BG_BRIGHT_CYAN: &str = "\x1B[46;1m";
 pub const BG_BRIGHT_WHITE: &str = "\x1B[47;1m";
+
+pub fn draw(map: Vec<Vec<canvas::TextPixel>>) {
+    for row in map.iter() {
+        print!("{}", RED);
+        for col in row.iter() {
+            print!("{}", col.text);
+        }
+        print!("\n");
+    }
+}

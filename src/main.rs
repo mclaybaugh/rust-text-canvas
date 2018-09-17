@@ -23,11 +23,12 @@ fn main() {
     let bg_char = '-';
 
     let map = canvas::make_map(rows, cols, bg_char);
-    for row in map.iter() {
-        print!("{}", terminal::BG_RED);
-        for col in row.iter() {
-            print!("{}", col.text);
-        }
-        print!("\n");
-    }
+    terminal::draw(map);
+
+
+    // while (gameState.continue) {
+    //     gameState = update(gameState);
+    //     draw(gameState);
+    //     wait(time);
+    // }
 }
