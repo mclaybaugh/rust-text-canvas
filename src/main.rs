@@ -25,10 +25,9 @@ fn main() {
     let map = canvas::make_map(rows, cols, bg_char);
     terminal::draw(map);
 
-
     // while (gameState.continue) {
     //     gameState = update(gameState);
-    //     draw(gameState);
+    //     draw(map(gameState));
     //     wait(time);
     // }
 }
