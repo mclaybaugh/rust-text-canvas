@@ -45,11 +45,60 @@ pub const BG_BRIGHT_MAGENTA: &str = "\x1B[45;1m";
 pub const BG_BRIGHT_CYAN: &str = "\x1B[46;1m";
 pub const BG_BRIGHT_WHITE: &str = "\x1B[47;1m";
 
+fn get_term_color(color: &canvas::Color) -> String {
+    return match color {
+        canvas::Color::Normal => String::from(RESET),
+        canvas::Color::Black => String::from(BLACK),
+        canvas::Color::Red => String::from(RED),
+        canvas::Color::Green => String::from(GREEN),
+        canvas::Color::Yellow => String::from(YELLOW),
+        canvas::Color::Blue => String::from(BLUE),
+        canvas::Color::Magenta => String::from(MAGENTA),
+        canvas::Color::Cyan => String::from(CYAN),
+        canvas::Color::White => String::from(WHITE),
+        canvas::Color::BrightBlack => String::from(BRIGHT_BLACK),
+        canvas::Color::BrightRed => String::from(BRIGHT_RED),
+        canvas::Color::BrightGreen => String::from(BRIGHT_GREEN),
+        canvas::Color::BrightYellow => String::from(BRIGHT_YELLOW),
+        canvas::Color::BrightBlue => String::from(BRIGHT_BLUE),
+        canvas::Color::BrightMagenta => String::from(BRIGHT_MAGENTA),
+        canvas::Color::BrightCyan => String::from(BRIGHT_CYAN),
+        canvas::Color::BrightWhite => String::from(BRIGHT_WHITE)
+    };
+}
+
+fn get_bg_term_color(color: &canvas::Color) -> String {
+    return match color {
+        canvas::Color::Normal => String::from(RESET),
+        canvas::Color::Black => String::from(BG_BLACK),
+        canvas::Color::Red => String::from(BG_RED),
+        canvas::Color::Green => String::from(BG_GREEN),
+        canvas::Color::Yellow => String::from(BG_YELLOW),
+        canvas::Color::Blue => String::from(BG_BLUE),
+        canvas::Color::Magenta => String::from(BG_MAGENTA),
+        canvas::Color::Cyan => String::from(BG_CYAN),
+        canvas::Color::White => String::from(BG_WHITE),
+        canvas::Color::BrightBlack => String::from(BG_BRIGHT_BLACK),
+        canvas::Color::BrightRed => String::from(BG_BRIGHT_RED),
+        canvas::Color::BrightGreen => String::from(BG_BRIGHT_GREEN),
+        canvas::Color::BrightYellow => String::from(BG_BRIGHT_YELLOW),
+        canvas::Color::BrightBlue => String::from(BG_BRIGHT_BLUE),
+        canvas::Color::BrightMagenta => String::from(BG_BRIGHT_MAGENTA),
+        canvas::Color::BrightCyan => String::from(BG_BRIGHT_CYAN),
+        canvas::Color::BrightWhite => String::from(BG_BRIGHT_WHITE)
+    };
+}
+
 pub fn draw(map: Vec<Vec<canvas::TextPixel>>) {
     for row in map.iter() {
-        print!("{}", RED);
         for col in row.iter() {
-            print!("{}", col.text);
+            match col.text_color {
+                canvas::Color::Normal => print!("{}", col.text),
+                _ => {
+                    let color = get_term_color(&col.text_color);
+                    print!("{}{}", color, col.text);
+                }
+            }
         }
         print!("\n");
     }
